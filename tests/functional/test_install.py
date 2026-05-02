@@ -68,7 +68,8 @@ def test_force_metadata_refresh_sends_cache_control_header(
             "install",
             "--force-metadata-refresh",
             "--no-build-isolation",
-            "--index-url", url,
+            "--index-url",
+            url,
             "simple",
         )
     call_args = server.mock.call_args_list[0].args
