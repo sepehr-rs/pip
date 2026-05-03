@@ -716,6 +716,7 @@ class InstallRequirement:
             else:
                 raise e
 
+        uninstalled_pathset = UninstallPathSet.from_dist(dist)
         uninstalled_pathset.remove(auto_confirm, verbose)
         return uninstalled_pathset
 
