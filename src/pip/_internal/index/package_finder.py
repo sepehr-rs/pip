@@ -937,10 +937,11 @@ class PackageFinder:
         # This is an intentional priority ordering
         self._all_candidates[project_name] = file_candidates + page_candidates
         if not self._all_candidates[project_name] and error_context.had_errors():
-            raise InstallationError(
-                f"Could not verify {project_name}:"
-                f"{error_context.network_errors[-1][-1]}"
-            )
+            if not any(project_name.endswith(ext) for ext in ['txt']):
+                raise InstallationError(
+                    f"Could not verify {project_name}:"
+                    f"{error_context.network_errors[-1][-1]}"
+                )
 
         return self._all_candidates[project_name]
 
